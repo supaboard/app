@@ -1,0 +1,3 @@
+[submodule "src/app/api/payments-api"]
+	path = src/app/api/payments-api
+	url = https://github.com/supaboard/payments-api.git

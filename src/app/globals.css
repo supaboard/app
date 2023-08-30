@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+    color: rgb(var(--foreground-rgb));
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+	overflow-x: hidden;
+}
+
+.mono {
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+.bg-gradient {
+    background-image: linear-gradient(45deg, #E52EE5, #FF7E44);
+}
+
+@layer components {
+    .btn-default {
+        @apply text-white px-4 py-2 rounded bg-[#444] hover:bg-gray-800 transition-colors cursor-pointer;
+    }
+
+    .btn-secondary {
+        @apply text-[#444] px-4 py-2 rounded border border-[#444] hover:bg-gray-200 transition-colors cursor-pointer;
+    }
+
+    .btn-empty {
+        @apply text-black px-4 py-4 rounded border border-gray-200 bg-white hover:bg-gray-200 transition-colors cursor-pointer;
+    }
+
+    label {
+        @apply text-gray-500 block uppercase text-[13px] mb-1;
+    }
+
+    .form-input {
+        @apply block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-gray-500 focus:border-gray-500 sm:text-sm;
+    }
+}
+
+.rs-picker-toggle {
+	@apply !text-dark !border-dark !shadow-none;
+}
+
+.rs-picker-has-value .rs-btn .rs-picker-toggle-value, .rs-picker-has-value .rs-picker-toggle .rs-picker-toggle-value {
+		@apply !text-dark;
+}
+
+:root {
+	--rs-btn-primary-bg: #444 !important;
+	--rs-btn-primary-text: #fff !important;
+	--rs-btn-link-text: #444 !important;
+	--rs-btn-primary-hover-bg: #1f2937 !important;
+
+	--rs-calendar-cell-selected-hover: #31dc8e !important;
+	--rs-bg-active: #31dc8e !important;
+	--rs-input-focus-border: #31dc8e !important;
+	--rs-calendar-cell-selected-hover-bg: #31dc8e !important;
+	--rs-calendar-range-bg: #c5f5db !important;
+
+
+	--rs-listbox-option-hover-bg: #c5f5db !important;
+    --rs-listbox-option-hover-text: #444 !important;
+}
+
+@keyframes blink {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.blink {
+    animation: blink .55s ease-in alternate infinite;
+}
+
+.react-resizable-handle {
+    opacity: 0.25;
+}
+
+@media (max-width: 768px) {
+	.react-grid-layout {
+		padding: 15px !important;
+		height: auto !important;
+	}
+
+	.react-grid-item {
+		width: 100% !important;
+		position: relative !important;
+		transform: none !important;
+		margin: 15px 0 !important;
+		height: auto !important;
+	}
+}
