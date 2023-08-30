@@ -5,6 +5,11 @@ const useStore = create((set) => ({
     edges: [],
     dashboard: {},
     showUpgradeModal: false,
+    showSidebar: false,
+
+    setShowSidebar: (show) => {
+        set((state) => ({ showSidebar: show }))
+    },
 
     setShowUpgradeModal: (show) => {
         set((state) => ({ showUpgradeModal: show }))

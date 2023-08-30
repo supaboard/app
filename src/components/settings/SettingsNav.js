@@ -16,7 +16,7 @@ export function SettingsNav({ children }) {
 
 	return (
 		<nav>
-			<ul role="list" className="flex flex-col border-r border-gray-200 divide-y divide-gray-200 h-[calc(100vh_-_70px)]">
+			<ul role="list" className="flex flex-col border-r border-gray-200 divide-y divide-gray-200 border-b md:border-b-0 md:h-[calc(100vh_-_70px)]">
 				{navigation.map((item) => (
 					<li key={item.name}>
 						<Link

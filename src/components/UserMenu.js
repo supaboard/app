@@ -4,10 +4,10 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 import Link from "next/link"
 import { Fragment, useState, useEffect } from "react"
 import { Menu, Transition } from "@headlessui/react"
-import { Bars3Icon, BellIcon, ChevronRightIcon, Cog6ToothIcon, CreditCardIcon, PowerIcon, RectangleStackIcon, UserIcon, UsersIcon } from "@heroicons/react/24/outline"
+import { Bars3Icon, ChevronRightIcon, Cog6ToothIcon, CreditCardIcon, PowerIcon, RectangleStackIcon } from "@heroicons/react/24/outline"
 import { ChevronDownIcon } from "@heroicons/react/20/solid"
 import { useSelectedLayoutSegment } from "next/navigation"
-import { classNames } from "@/components/util"
+import useStore from "@/store/index"
 
 import "tippy.js/dist/tippy.css"
 import "@/app/globals.css"
@@ -26,9 +26,9 @@ const userNavigation = [
 
 export function UserMenu({ children }) {
 	const segment = useSelectedLayoutSegment()
-	const [sidebarOpen, setSidebarOpen] = useState(false)
 	const [showWorkspaceModal, setShowWorkspaceModal] = useState(false)
 	const [activeAccount, setActiveAccount] = useState(null)
+	const { showSidebar, setShowSidebar } = useStore()
 
 	const supabase = createClientComponentClient({
 		options: {
@@ -79,7 +79,7 @@ export function UserMenu({ children }) {
 	return (
 		<>
 			<div className="sticky top-0 z-40 flex py-3 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
-				<button type="button" className="-m-2.5 p-2.5 text-gray-700 lg:hidden" onClick={() => setSidebarOpen(true)}>
+				<button type="button" className="-m-2.5 p-2.5 text-gray-700 lg:hidden" onClick={() => setShowSidebar(true)}>
 					<span className="sr-only">Open sidebar</span>
 					<Bars3Icon className="h-6 w-6" aria-hidden="true" />
 				</button>
@@ -130,9 +130,9 @@ export function UserMenu({ children }) {
 								</div>
 								<span className="hidden lg:flex lg:items-center">
 									<span className="ml-4 text-sm font-semibold leading-6 text-gray-900 max-w-[150px] truncate" aria-hidden="true">
-											<>
-												{activeAccount?.accounts?.team_name ? activeAccount?.accounts?.team_name : "Personal"}
-											</>
+										<>
+											{activeAccount?.accounts?.team_name ? activeAccount?.accounts?.team_name : "Personal"}
+										</>
 									</span>
 									<ChevronDownIcon className="ml-2 h-5 w-5 text-gray-400" aria-hidden="true" />
 								</span>
