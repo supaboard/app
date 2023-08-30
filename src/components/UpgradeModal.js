@@ -13,6 +13,12 @@ export function UpgradeModal() {
 		if (showUpgradeModal == "create:segment") {
 			router.push("/segments")
 		}
+		if (showUpgradeModal == "create:dashboard") {
+			router.push("/dashboards")
+		}
+		if (showUpgradeModal == "create:datasource") {
+			router.push("/databases")
+		}
 	}
 
 	return (
