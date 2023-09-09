@@ -2,9 +2,9 @@ import { NextResponse } from "next/server"
 import { cookies } from "next/headers"
 import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs"
 
-import { Client } from "pg"
 import { getConnectionDetails } from "@/lib/database"
-import { buildComplexQuery } from "@/lib/postgres/querybuilder"
+import { fetchPostgresData } from "@/lib/adapters/postgres/querybuilder"
+import { fetchMySQLData } from "@/lib/adapters/mysql/querybuilder"
 
 
 export async function POST(req) {
@@ -22,26 +22,13 @@ export async function POST(req) {
 		const connectionDetails = await getConnectionDetails(supabase, account_id, data.database)
 		let result
 
-		const client = new Client({
-			host: connectionDetails.host,
-			port: parseInt(connectionDetails.port),
-			user: connectionDetails.user,
-			password: connectionDetails.password,
-			database: connectionDetails.database,
-		})
-		await client.connect()
-
-		if (data.filters.query) {
-			const res = await client.query(data.filters.query)
-			result = res.rows
-			client.end()
-			return NextResponse.json(result || [])
+		if (connectionDetails.type == "postgres" || connectionDetails.type == "supabase") {
+			result = await fetchPostgresData(data, connectionDetails)
 		}
 
-		const query = await buildComplexQuery(data)
-		const res = await client.query(query)
-		result = res.rows
-		client.end()
+		if (connectionDetails.type == "mysql" || connectionDetails.type == "planetscale") {
+			result = await fetchMySQLData(data, connectionDetails)
+		}
 
 		return NextResponse.json(result || [])
 	} catch (error) {

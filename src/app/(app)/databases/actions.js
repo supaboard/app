@@ -3,6 +3,7 @@
 import { cookies } from "next/headers"
 import { createServerActionClient } from "@supabase/auth-helpers-nextjs"
 import { encrypt } from "@/lib/crypto"
+import { redirect } from "next/navigation"
 
 
 export const createDatabase = async (name, databaseType, connection) => {
@@ -65,39 +66,34 @@ export const updateDatabase = async (formData) => {
 	const user = formData.get("user")
 	const password = formData.get("password")
 	const database = formData.get("database")
+	const uuid = formData.get("uuid")
 
 	let connection = {
-		host: databaseDetails.host,
-		port: databaseDetails.port,
-		user: databaseDetails.user,
-		password: databaseDetails.password,
-		database: databaseDetails.database,
+		host: host,
+		port: port,
+		user: user,
+		password: password,
+		database: database,
 	}
 
-	try {
-		const encryptedConnection = encrypt(JSON.stringify(connection))
-		const { data, error } = await supabase
-			.from("databases")
-			.insert([
-				{
-					name: name,
-					type: databaseType,
-					connection: encryptedConnection,
-					account_id: account_id
-				}
-			])
-			.select()
-			.single()
+	const encryptedConnection = encrypt(JSON.stringify(connection))
+	const { data, error } = await supabase
+		.from("databases")
+		.update({
+			name: name,
+			connection: encryptedConnection
+		})
+		.eq("uuid", uuid)
+		.select()
+		.single()
 
-		if (error) {
-			console.log(error)
-			throw Error(error)
-		}
-
-		return data
-	} catch (error) {
+	if (error) {
+		console.log(error)
 		throw Error(error)
 	}
+
+	redirect("/databases")
+
 }
 
 
@@ -114,11 +110,11 @@ export const deleteDatabase = async (database) => {
 
 	try {
 		const { data, error } = await supabase
-            .from("databases")
-            .delete()
-            .eq("id", database.id)
-            .select()
-            .single()
+			.from("databases")
+			.delete()
+			.eq("id", database.id)
+			.select()
+			.single()
 
 		if (error) {
 			console.log(error)
