@@ -21,6 +21,21 @@
   </p>
 </p>
 
+## Running the app locally
+1. Clone the repo   
+`https://github.com/supaboard/app.git`   
+
+2. Install dependencies and start the dev server   
+`npm i && npm run dev`
+
+3. You'll need a Supabase account / Postgress database and [apply](https://supabase.com/docs/reference/cli/supabase-migration-up) the initial migration located in `/supabase`.   
+We're using a custom schema called `supaboard`, so make sure this accessible from outside connections. In Supabase, go to Settings > API and add `supaboard` to the exposed schemas as shown below.
+
+![supabase-schema-permission](https://github.com/supaboard/.github/blob/main/assets/supabase-schema-permission.png)
+
+4. Copy or rename the `.env.example` file to `.env` and fill in the environment variables.   
+**Important:** The variables `IS_PLATFORM` and `NEXT_PUBLIC_IS_PLATFORM` are strongly advised to be set to `false`, otherwise you will run into account limits and other payment issues. The flag is differentiating between our hosted offer and self-hosted instances.
+
 ## env example
 ```
 NEXT_PUBLIC_APP_URL=http://localhost:3000
@@ -29,6 +44,7 @@ NEXT_PUBLIC_ENV=dev
 
 # Differentiate between cloud and self-hosted
 IS_PLATFORM=true
+NEXT_PUBLIC_IS_PLATFORM=true
 NEXT_PUBLIC_SIGNUP_CLOSED=false
 
 # Supabase / database
