@@ -18,7 +18,8 @@ export const getConnectionDetails = async (supabase, account_id, tabase_uuid) =>
 		throw new Error("Internal Server Error")
 	}
 
-	const connectionDetails = JSON.parse(decrypt(database.connection))
+	let connectionDetails = JSON.parse(decrypt(database.connection))
+	connectionDetails.type = database.type
 
 	return connectionDetails
 }

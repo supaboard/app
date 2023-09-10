@@ -49,31 +49,32 @@ export function DatabaseTypes({ databaseType, setDatabaseType, activeStep, setAc
 					</div>
 				</div>
 				<div className="col-span-12">
-					<Tippy content="Coming soon">
-						<div
-							className={`
-							opacity-25
+					<div
+						className={`
 							block cursor-pointer text-left p-0 m-0 bg-white border border-gray-200 rounded-lg h-full ring-2 ring-transparent hover:ring-highlight hover:shadow-lg transition-all
 							${databaseType == "planetscale" ? "!ring-highlight shadow-lg" : ""}
 						`}
-						>
-							<div className="flex gap-x-2 items-center p-2">
-								<img src="/img/databases/planetscale.svg" alt="Postgres" className="w-12 h-12 rounded-t-lg" />
-								<div className="p-4">
-									<b>Planetscale</b>
-								</div>
+						onClick={() => {
+							setDatabaseType("planetscale")
+						}}
+					>
+						<div className="flex gap-x-2 items-center p-2">
+							<img src="/img/databases/planetscale.svg" alt="Postgres" className="w-12 h-12 rounded-t-lg" />
+							<div className="p-4">
+								<b>Planetscale</b>
 							</div>
 						</div>
-					</Tippy>
+					</div>
 				</div>
 				<div className="col-span-12">
-					<Tippy content="Coming soon">
 						<div
-							className={`
-							opacity-25
+						className={`
 							block cursor-pointer text-left p-0 m-0 bg-white border border-gray-200 rounded-lg h-full ring-2 ring-transparent hover:ring-highlight hover:shadow-lg transition-all
 							${databaseType == "mysql" ? "!ring-highlight shadow-lg" : ""}
 						`}
+						onClick={() => {
+							setDatabaseType("mysql")
+						}}
 						>
 							<div className="flex gap-x-2 items-center p-2">
 								<img src="/img/databases/mysql.svg" alt="Postgres" className="w-12 h-12 rounded-t-lg" />
@@ -81,8 +82,7 @@ export function DatabaseTypes({ databaseType, setDatabaseType, activeStep, setAc
 									<b>MySQL</b>
 								</div>
 							</div>
-						</div>
-					</Tippy>
+					</div>
 				</div>
 			</div>
 			<div className="flex gap-x-4 mt-10 place-content-end bg-gray-50 rounded-b-lg border-t border-gray-200 py-3 px-6">

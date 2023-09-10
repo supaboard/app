@@ -34,15 +34,8 @@ export default async function EditDatabase({ params, searchParams }) {
 				<div className="mt-4">
 					<div className="bg-gray-50 rounded border border-gray-200 p-12 shadow-inner">
 
-						<form
-							action={updateDatabase()
-								.then(async (res) => {
-
-								})
-								.catch((err) => console.log(err.message))
-							}
-						>
-
+						<form action={updateDatabase}>
+							<input type="hidden" name="uuid" value={id} />
 							<div className="max-w-lg mx-auto block cursor-pointer text-left m-0 bg-white border border-gray-200 rounded-lg shadow-sm drop-shadow-lg h-full">
 								<div className="p-4 bg-gray-50 border-b border-gray-200 rounded-t-lg">
 									<h2 className="text-xl font-black">

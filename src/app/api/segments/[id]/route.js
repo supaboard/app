@@ -7,7 +7,7 @@ import { Client } from "pg"
 import { decrypt } from "@/lib/crypto"
 import { checkUserAllowed } from "@/lib/auth"
 import { operatorMap } from "@/lib/operators"
-import { buildQuery } from "@/lib/postgres/querybuilder"
+import { buildQuery } from "@/lib/adapters/postgres/querybuilder"
 
 export async function GET(req, { params }) {
 	const id = params.id
