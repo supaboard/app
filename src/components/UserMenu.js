@@ -67,6 +67,8 @@ export function UserMenu({ children }) {
 				return <Link href="/segments">User Segments</Link>
 			case "databases":
 				return <Link href="/databases">Databases</Link>
+			case "panels":
+				return <Link href="/panels">Panels</Link>
 			case "workflows":
 				return <Link href="/workflows">Workflows</Link>
 			case "settings":

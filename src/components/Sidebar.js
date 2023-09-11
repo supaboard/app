@@ -2,7 +2,7 @@
 
 import { Fragment, useState } from "react"
 import { Dialog, Transition } from "@headlessui/react"
-import { ChartBarIcon, CircleStackIcon, HomeIcon, UserGroupIcon, XMarkIcon } from "@heroicons/react/24/outline"
+import { BoltIcon, ChartBarIcon, CircleStackIcon, CodeBracketIcon, HomeIcon, PencilSquareIcon, Square3Stack3DIcon, Squares2X2Icon, SquaresPlusIcon, TableCellsIcon, UserGroupIcon, WindowIcon, XMarkIcon } from "@heroicons/react/24/outline"
 import Image from "next/image"
 import Link from "next/link"
 import { classNames } from "@/components/util"
@@ -17,6 +17,7 @@ import "@/app/globals.css"
 const navigation = [
 	{ name: "Overview", href: "/overview", icon: HomeIcon, current: true },
 	{ name: "Dashboards", href: "/dashboards", icon: ChartBarIcon, current: false },
+	{ name: "Panels", href: "/panels", icon: Square3Stack3DIcon, current: false },
 	{ name: "User Segments", href: "/segments", icon: UserGroupIcon, current: false },
 	// { name: 'Workflows', href: '/workflows', icon: BoltIcon, current: false },
 	{ name: "Database Connections", href: "/databases", icon: CircleStackIcon, current: false },
