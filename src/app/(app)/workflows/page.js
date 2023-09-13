@@ -11,7 +11,7 @@ const nodeTypes = {
     defaultNode: DefaultNode,
 }
 
-export default function Workflows() {    
+export default function Workflows() {
     const { nodes, setNodes, edges, setEdges } = useStore()
     const [flowInstance, setFlowInstance] = useState(null)
 

@@ -7,7 +7,7 @@ import store from "@/store"
 export default function DefaultNode({ data }) {
     const { nodes, setNodes, edges, setEdges } = store()
     const currentNode = useRef(null)
-    
+
     let node = nodes.find(node => node.id == data.id)
     if (!node) {
         node = data
@@ -64,7 +64,7 @@ export default function DefaultNode({ data }) {
                         }}
                     >
                         <PlusIcon className="w-5 h-5" />
-                    </button>                    
+                    </button>
                 </div>
                 <Handle type="source" position={Position.Right} className="opacity-0 absolute !-right-2 !top-4 !w-3 !h-3 !bg-sky-200 !border-2 !border-sky-400 !rounded-full !p-0 !m-0" />
             </div>
