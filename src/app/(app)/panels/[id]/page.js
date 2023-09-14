@@ -5,12 +5,13 @@ import ReactFlow, { ReactFlowProvider, Background, Controls, addEdge, applyEdgeC
 import "reactflow/dist/style.css"
 import useStore from "@/store/index"
 import DefaultNode from "@/components/workflows/nodes/DefaultNode"
+import BaseElement from "@/components/panels/BaseElement"
 import { useEffect, useState } from "react"
 import { PanelSidebar } from "@/components/panels/PanelSidebar"
 
 
 const nodeTypes = {
-	defaultNode: DefaultNode,
+	defaultNode: BaseElement,
 }
 
 export default function Workflows() {
@@ -29,6 +30,7 @@ export default function Workflows() {
 				height: 200,
 			},
 			draggable: true,
+            dragHandle: ".drag-pane",
 		}
 
 		setNodes([

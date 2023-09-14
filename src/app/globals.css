@@ -83,6 +83,23 @@ body {
     opacity: 0.25;
 }
 
+.react-flow__resize-control.line {
+    opacity: 0;
+}
+
+.react-flow__resize-control.handle {
+	width: 10px !important;
+	height: 10px !important;
+	border-radius: 100% !important;
+	z-index: 20;
+	background-color: #31dc8e !important;
+	opacity: 0;
+}
+
+.react-flow__resize-control.handle:hover {
+	opacity: 100;
+}
+
 @media (max-width: 768px) {
 	.react-grid-layout {
 		padding: 15px !important;
