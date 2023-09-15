@@ -6,6 +6,7 @@ const useStore = create((set) => ({
     dashboard: {},
     showUpgradeModal: false,
     showSidebar: false,
+    activePanelElement: null,
 
     setShowSidebar: (show) => {
         set((state) => ({ showSidebar: show }))
@@ -25,6 +26,10 @@ const useStore = create((set) => ({
 
     setEdges: (eds) => {
         set((state) => ({ edges: eds }))
+    },
+
+    setActivePanelElement: (el) => {
+        set((state) => ({ activePanelElement: el }))
     },
 }))
 

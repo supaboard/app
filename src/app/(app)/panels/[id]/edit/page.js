@@ -8,6 +8,7 @@ import DefaultNode from "@/components/workflows/nodes/DefaultNode"
 import BaseElement from "@/components/panels/BaseElement"
 import { useEffect, useState } from "react"
 import { PanelSidebar } from "@/components/panels/PanelSidebar"
+import PanelInspector from "@/components/panels/PanelInspector"
 
 
 const nodeTypes = {
@@ -71,6 +72,16 @@ export default function Workflows() {
 		const reactFlowBounds = reactFlowWrapper.current.getBoundingClientRect()
 		const type = event.dataTransfer.getData("application/reactflow")
 
+		if (type == "chartNode") {
+
+		}
+		if (type == "tableNode") {
+
+		}
+		if (type == "buttonNode") {
+
+		}
+
 		// check if the dropped element is valid
 		if (typeof type === "undefined" || !type) {
 			return
@@ -85,7 +96,10 @@ export default function Workflows() {
 			id: (nodes.length + 1).toString(),
 			type: "defaultNode",
 			position,
-			data: { id: "dragged", label: "dragged" },
+			data: {
+				id: "dragged",
+				label: type
+			},
 			draggable: true,
 		}
 
@@ -114,6 +128,9 @@ export default function Workflows() {
 								maxZoom={1}
 								snapGrid={[20, 20]}
 								snapToGrid={true}
+								panOnDrag={false}
+								preventScrolling={true}
+								zoomOnScroll={false}
 							>
 								<Controls />
 								<Background variant="lines" gap={20} size={1} color="#efefef" />
@@ -121,6 +138,7 @@ export default function Workflows() {
 						</div>
 					</ReactFlowProvider>
 				</div>
+				<PanelInspector />
 			</div>
 		</div>
 	)
