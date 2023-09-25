@@ -20,32 +20,6 @@ export default function Workflows() {
 	const reactFlowWrapper = useRef(null)
 	const [flowInstance, setFlowInstance] = useState(null)
 
-	const initFlow = async () => {
-		let startingNode = {
-			id: "start",
-			type: "defaultNode",
-			position: { x: 0, y: 0 },
-			data: { id: "start", label: "This is the start of a conversation" },
-			style: {
-				width: 300,
-				height: 200,
-			},
-			draggable: true,
-            dragHandle: ".drag-pane",
-		}
-
-		setNodes([
-			startingNode
-		])
-		setEdges([])
-	}
-
-	useEffect(() => {
-		if (nodes?.length == 0) {
-			initFlow()
-		}
-	}, [nodes])
-
 	const onNodesChange = async (changes) => {
 		let newNodes = applyNodeChanges(changes, nodes)
 		setNodes(newNodes)
@@ -98,9 +72,10 @@ export default function Workflows() {
 			position,
 			data: {
 				id: "dragged",
-				label: type
+				nodeType: type
 			},
 			draggable: true,
+			dragHandle: ".drag-pane",
 		}
 
 		setNodes([...nodes, newNode])

@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react"
 import { NodeResizer } from "reactflow"
 import store from "@/store"
+import TableNode from "./elements/Table"
 
 export default function BaseElement({ data, children }) {
 	const wrapperRef = useRef(null)
@@ -28,6 +29,23 @@ export default function BaseElement({ data, children }) {
 
 	useOutsideAlerter(wrapperRef)
 
+	const content = [{
+		"Name": "John Doe",
+		"Age": 25,
+		"Address": "123 Main St",
+		"City": "Springfield",
+		"State": "IL",
+		"Zip": 62701
+	},
+	{
+		"Name": "Jane Doe",
+		"Age": 26,
+		"Address": "456 Main St",
+		"City": "Springfield",
+		"State": "IL",
+		"Zip": 62701
+	}]
+
 	return (
 		<>
 			<div
@@ -44,7 +62,9 @@ export default function BaseElement({ data, children }) {
 						<p className="text-white ml-2">Pane title</p>
 					</div>
 					<div className="p-4">
-						{children}
+						{data.nodeType == "tableNode" && (
+							<TableNode data={content} />
+						)}
 					</div>
 				</div>
 			</div>
